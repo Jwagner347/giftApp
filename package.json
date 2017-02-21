@@ -1,0 +1,15 @@
+{
+  "name": "gift-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "uploadWishlist.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "spec": "node uploadWishlist.spec.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^2.2.22"
+  }
+}
