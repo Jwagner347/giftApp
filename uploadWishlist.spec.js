@@ -1,5 +1,5 @@
 const assert = require('assert');
-const uploadWishlist = require('./uploadWishlist');
+const uploadWishlist = require('./index');
 
 const myWishlistItem = "New MacBook";
 const emptyWishlist = undefined;
