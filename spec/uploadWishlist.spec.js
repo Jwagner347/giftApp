@@ -5,22 +5,25 @@ const uploadWishlist = require('../index');
 
 describe('Upload Wishlist', () => {
   const emptyWishlist = undefined;
-  const singleItemWishlist = ["Pixel"];
+  const singleItemWishlist = ['Pixel'];
   const multipleWishlistItems = ['Kyocera', 'Yacht', 'Condo'];
-  const returnedWishlist = {};
+  const expectedSingleItemWishlist = { wishlistItems: singleItemWishlist, name: '' };
+  const expectedMultipleItemWishlist = { wishlistItems: multipleWishlistItems, name: '' };
+  const expectedMultipleItemNamedWishlist = { wishlistItems: multipleWishlistItems, name: 'Jane Fonda' };
 
   it('should return one wishlist item', () => {
-    returnedWishlist.wishlistItems = singleItemWishlist;
-    assert.deepEqual(uploadWishlist(singleItemWishlist), JSON.stringify(returnedWishlist));
+    assert.deepEqual(uploadWishlist(singleItemWishlist), JSON.stringify(expectedSingleItemWishlist));
   });
 
   it('should return multiple wishlist items', () => {
-    returnedWishlist.wishlistItems = multipleWishlistItems;
-    assert.deepEqual(uploadWishlist(multipleWishlistItems), JSON.stringify(returnedWishlist));
+    assert.deepEqual(uploadWishlist(multipleWishlistItems), JSON.stringify(expectedMultipleItemWishlist));
   });
 
   it('should not accept empty wish list', () => {
     assert.equal(uploadWishlist(emptyWishlist), 'Please include at least one item for your wishlist');
   });
 
+  it('should return wishlist with the name of the wishlist owner', () => {
+    assert.deepEqual(uploadWishlist(multipleWishlistItems, 'Jane Fonda'), JSON.stringify(expectedMultipleItemNamedWishlist));
+  });
 });

@@ -9,6 +9,7 @@ module.exports = {
   "rules": {
     "comma-dangle": ["error", "never"],
     "arrow-parens": ["error", "always"],
-    "arrow-body-style": ["error", "always"]
+    "arrow-body-style": ["error", "always"],
+    "max-len": [2, {"code": 140, "tabWidth": 2, "ignoreUrls": true}]
   }
 };
