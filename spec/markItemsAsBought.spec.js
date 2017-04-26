@@ -1,22 +1,20 @@
 const { describe, it, beforeEach } = global;
 const assert = require('chai').assert;
 
-const markItemsAsBought = require('../markItemsAsBought');
+const markItemsAsBoughtFor = require('../markItemsAsBoughtFor');
 
-describe('Mark items as bought', () => {
+describe('Mark items as bought for', () => {
   let wishlists;
   beforeEach(() => {
-    wishlists = {
-      wishlists: [
-        { name: 'John Smith', wishlistItems: ['Kyocera', 'Yacht', 'Condo'] },
-        { name: 'Jenny Ford', wishlistItems: ['Honda', 'Ball Pit'] },
-        { name: 'Fred Durst', wishlistItems: ['Samsung', 'fishing boat', 'Thigh-master'] },
-      ]
-    };
+    wishlists = [
+      { name: 'John Smith', wishlistItems: ['Kyocera', 'Yacht', 'Condo'] },
+      { name: 'Jenny Ford', wishlistItems: ['Honda', 'Ball Pit'] },
+      { name: 'Fred Durst', wishlistItems: ['Samsung', 'fishing boat', 'Thigh-master'] },
+    ];
   });
 
   it('should create new field of bought items in wishlist object', () => {
-    assert.deepEqual(markItemsAsBought('John Smith')({ boughtItems: 'Condo', wishlists }), JSON.stringify({
+    assert.deepEqual(markItemsAsBoughtFor('John Smith')({ boughtItems: ['Condo'], wishlists }), JSON.stringify({
       name: 'John Smith',
       wishlistItems: ['Kyocera', 'Yacht', 'Condo'],
       boughtItems: ['Condo']
@@ -24,10 +22,17 @@ describe('Mark items as bought', () => {
   });
 
   it('should complain if the name is not in the wishlist object you are searching through', () => {
-    assert.deepEqual(markItemsAsBought('Jim Nonexistent')({ boughtItems: 'Condo', wishlists }), 'No wishlists exist for Jim Nonexistent');
+    assert.deepEqual(markItemsAsBoughtFor('Jim Nonexistent')({ boughtItems: ['Condo'], wishlists }), 'No wishlists exist for Jim Nonexistent');
   });
 
-  // TODO: add test for when name doesn't match any name in wishlist object' +
+  it('should mark multiple items as bought', () => {
+    assert.deepEqual(markItemsAsBoughtFor('Fred Durst')({ boughtItems: ['fishing boat', 'Thigh-master'], wishlists }), JSON.stringify({
+      name: 'Fred Durst',
+      wishlistItems: ['Samsung', 'fishing boat', 'Thigh-master'],
+      boughtItems: ['fishing boat', 'Thigh-master']
+    }));
+  });
+
   // TODO: add test for when marking multiple items as bought
   // TODO: add test for when bought items already exists
   // TODO: extract wishlist.forEach you are calling in retreive and markItemsAsBought into its own module

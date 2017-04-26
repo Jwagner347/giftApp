@@ -1,10 +1,10 @@
-module.exports = (name) => ({ boughtItems, wishlists }) => {
+module.exports = (name) => ({ boughtItems = [], wishlists }) => {
   let matchedWishlist;
   let matchCount = 0;
-  const addBoughtItemsToWishlists = wishlists.wishlists.map((wishlistObject) => {
+  const addBoughtItemsToWishlists = wishlists.map((wishlistObject) => {
     if (wishlistObject.name === name) {
       matchCount++;
-      wishlistObject.boughtItems = [boughtItems];
+      wishlistObject.boughtItems = boughtItems;
     }
     return wishlistObject;
   });
