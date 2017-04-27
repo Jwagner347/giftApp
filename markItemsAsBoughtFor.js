@@ -4,9 +4,11 @@ module.exports = (name) => ({ boughtItems = [], wishlists }) => {
   const addBoughtItemsToWishlists = wishlists.map((wishlistObject) => {
     if (wishlistObject.name === name) {
       matchCount++;
-      if (wishlistObject.boughtItems.length) {
+      if (wishlistObject.boughtItems && wishlistObject.boughtItems.length && boughtItems) {
         boughtItems.forEach((item) => {
-          return wishlistObject.boughtItems.push(item);
+          if (!wishlistObject.boughtItems.includes(item)) {
+            return wishlistObject.boughtItems.push(item);
+          }
         });
       } else {
         wishlistObject.boughtItems = boughtItems;

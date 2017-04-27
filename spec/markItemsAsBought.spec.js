@@ -44,7 +44,7 @@ describe('Mark items as bought for', () => {
     }));
   });
 
-  fit('should not overwrite bought items inadvertently', () => {
+  it('should not overwrite bought items inadvertently', () => {
     const name = 'Samwise Ganges';
     const wishlistItems = ['Bread', 'Potatoes', 'Flax', 'Turnips', 'Collard Greens'];
     const wishlistWithMultipleMarkedItems = [
