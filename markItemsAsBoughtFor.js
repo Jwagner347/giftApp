@@ -3,15 +3,15 @@ module.exports = (name) => ({ boughtItems = [], wishlists }) => {
   let matchCount = 0;
   const addBoughtItemsToWishlists = wishlists.map((wishlistObject) => {
     if (wishlistObject.name === name) {
-      matchCount++;
+      matchCount += 1;
       if (wishlistObject.boughtItems && wishlistObject.boughtItems.length && boughtItems) {
-        boughtItems.forEach((item) => {
+        boughtItems.forEach((item) => { // eslint-disable-line consistent-return
           if (!wishlistObject.boughtItems.includes(item)) {
             return wishlistObject.boughtItems.push(item);
           }
         });
       } else {
-        wishlistObject.boughtItems = boughtItems;
+        wishlistObject.boughtItems = boughtItems; // eslint-disable-line no-param-reassign
       }
     }
     return wishlistObject;

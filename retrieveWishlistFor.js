@@ -1,7 +1,7 @@
 module.exports = (name) => ({ wishlists }) => {
   let matchedWishlist;
 
-  wishlists.forEach((wishlist, index) => {
+  wishlists.forEach((wishlist) => {
     if (wishlist.name === name) {
       matchedWishlist = wishlist.wishlistItems;
     }

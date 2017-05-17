@@ -9,7 +9,7 @@ describe('Mark items as bought for', () => {
     wishlists = [
       { name: 'John Smith', wishlistItems: ['Kyocera', 'Yacht', 'Condo'] },
       { name: 'Jenny Ford', wishlistItems: ['Honda', 'Ball Pit'] },
-      { name: 'Fred Durst', wishlistItems: ['Samsung', 'fishing boat', 'Thigh-master'] },
+      { name: 'Fred Durst', wishlistItems: ['Samsung', 'fishing boat', 'Thigh-master'] }
     ];
   });
 
@@ -50,14 +50,13 @@ describe('Mark items as bought for', () => {
     const wishlistWithMultipleMarkedItems = [
       { name, wishlistItems, boughtItems: ['Bread', 'Potatoes'] }
     ];
-    assert.equal(markItemsAsBoughtFor(name)({ boughtItems: ['Flax', 'Collard Greens'], wishlists: wishlistWithMultipleMarkedItems }), JSON.stringify({
-      name,
-      wishlistItems,
-      boughtItems: ['Bread', 'Potatoes', 'Flax', 'Collard Greens']
-    }));
+    assert.equal(markItemsAsBoughtFor(name)({ boughtItems: ['Flax', 'Collard Greens'], wishlists: wishlistWithMultipleMarkedItems }),
+      JSON.stringify({
+        name,
+        wishlistItems,
+        boughtItems: ['Bread', 'Potatoes', 'Flax', 'Collard Greens']
+      }));
   });
 
-  // TODO: extract wishlist.forEach you are calling in retreive and markItemsAsBought into its own module
   // TODO: clean up eslinting errors or figure out how you want to handle if to use airbnb base
-
 });
