@@ -2,5 +2,10 @@ module.exports = (wishlistItems, name) => {
   if (wishlistItems === undefined) {
     return 'Please include at least one item for your wishlist';
   }
-  return JSON.stringify({ wishlistItems, name: name || '' });
+
+  if (!name) {
+    return 'Wishlist must have a name associated with it';
+  }
+
+  return JSON.stringify({ wishlistItems, name });
 };

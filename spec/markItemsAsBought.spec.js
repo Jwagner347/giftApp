@@ -57,6 +57,4 @@ describe('Mark items as bought for', () => {
         boughtItems: ['Bread', 'Potatoes', 'Flax', 'Collard Greens']
       }));
   });
-
-  // TODO: clean up eslinting errors or figure out how you want to handle if to use airbnb base
 });
