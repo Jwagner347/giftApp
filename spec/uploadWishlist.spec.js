@@ -13,11 +13,11 @@ describe('Upload Wishlist', () => {
   const expectedMultipleItemNamedWishlist = { wishlistItems: multipleWishlistItems, name: 'Jane Fonda' };
 
   it('should return one wishlist item', () => {
-    assert.deepEqual(uploadWishlist(singleItemWishlist, loggedInUser), JSON.stringify(expectedSingleItemWishlist));
+    assert.deepEqual(uploadWishlist(singleItemWishlist, loggedInUser), expectedSingleItemWishlist);
   });
 
   it('should return multiple wishlist items', () => {
-    assert.deepEqual(uploadWishlist(multipleWishlistItems, loggedInUser), JSON.stringify(expectedMultipleItemWishlist));
+    assert.deepEqual(uploadWishlist(multipleWishlistItems, loggedInUser), expectedMultipleItemWishlist);
   });
 
   it('should not accept empty wish list', () => {
@@ -25,7 +25,7 @@ describe('Upload Wishlist', () => {
   });
 
   it('should return wishlist with the name of the wishlist owner', () => {
-    assert.deepEqual(uploadWishlist(multipleWishlistItems, 'Jane Fonda'), JSON.stringify(expectedMultipleItemNamedWishlist));
+    assert.deepEqual(uploadWishlist(multipleWishlistItems, 'Jane Fonda'), expectedMultipleItemNamedWishlist);
   });
 
   it('should return an error when no name is provided', () => {

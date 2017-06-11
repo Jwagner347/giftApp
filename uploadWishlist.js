@@ -7,5 +7,5 @@ module.exports = (wishlistItems, name) => {
     return 'Wishlist must have a name associated with it';
   }
 
-  return JSON.stringify({ wishlistItems, name });
+  return { wishlistItems, name };
 };
