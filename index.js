@@ -8,7 +8,6 @@ app.use(bodyParser.json());
 
 app.post('/wishlist/upload', (req, res) => {
   wishlistController.upload(req, res);
-  // res.send('Hello World!');
 });
 
 app.listen(3000, () => {
