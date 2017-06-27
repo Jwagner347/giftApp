@@ -1,4 +1,4 @@
-const fs = require('fs');
+const saveWishlist = require('./saveWishlist');
 
 module.exports = (wishlistItems, name) => {
   if (!wishlistItems) {
@@ -9,23 +9,7 @@ module.exports = (wishlistItems, name) => {
     return 'Wishlist must have a name associated with it';
   }
 
-  const successfulWishlistUpload = { wishlistItems, name };
-  let dataStoreFile;
-  let parsedDataStoreFile;
-  let dataStoreJSON;
+  saveWishlist(wishlistItems, name);
 
-  if (!fs.existsSync('./wishlistDataStore.json')) {
-    fs.writeFileSync('./wishlistDataStore.json', JSON.stringify([successfulWishlistUpload]));
-  } else {
-    dataStoreFile = fs.readFileSync('./wishlistDataStore.json');
-    parsedDataStoreFile = JSON.parse(dataStoreFile);
-    parsedDataStoreFile.push({
-      wishlistItems,
-      name
-    });
-    dataStoreJSON = JSON.stringify(parsedDataStoreFile);
-    fs.writeFileSync('./wishlistDataStore.json', dataStoreJSON);
-  }
-
-  return successfulWishlistUpload;
+  return { wishlistItems, name };
 };

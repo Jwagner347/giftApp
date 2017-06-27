@@ -1,0 +1,18 @@
+const fs = require('fs');
+
+module.exports = (wishlistItems, name) => {
+  const wishlistToSave = { wishlistItems, name };
+  let dataStoreFile;
+  let parsedDataStoreFile;
+  let dataStoreJSON;
+
+  if (!fs.existsSync('./wishlistDataStore.json')) {
+    fs.writeFileSync('./wishlistDataStore.json', JSON.stringify([wishlistToSave]));
+  } else {
+    dataStoreFile = fs.readFileSync('./wishlistDataStore.json');
+    parsedDataStoreFile = JSON.parse(dataStoreFile);
+    parsedDataStoreFile.push(wishlistToSave);
+    dataStoreJSON = JSON.stringify(parsedDataStoreFile);
+    fs.writeFileSync('./wishlistDataStore.json', dataStoreJSON);
+  }
+};
