@@ -19,11 +19,28 @@ module.exports = (wishlistItems, name) => {
     dataStoreFile = fs.readFileSync('./wishlistDataStore.json');
     parsedDataStoreFile = JSON.parse(dataStoreFile);
     const wishlistsIds = Object.keys(parsedDataStoreFile.wishlists);
-    const newWishlistNumber = wishlistsIds.length + 1;
-    parsedDataStoreFile.wishlists[`${newWishlistNumber}`] = {
-      id: newWishlistNumber,
-      wishlist: wishlistToSave
+    const wishlistAlreadyExists = (wishlists, nameToCheck) => {
+      let existingWishlistId;
+      wishlistsIds.forEach((wishlistId) => {
+        if (wishlists[`${wishlistId}`].wishlist.name === nameToCheck) {
+          existingWishlistId = wishlistId;
+        }
+      });
+      return existingWishlistId;
     };
+    const existingWishlist = wishlistAlreadyExists(parsedDataStoreFile.wishlists, name);
+    if (existingWishlist) {
+      parsedDataStoreFile.wishlists[`${existingWishlist}`] = {
+        id: existingWishlist,
+        wishlist: wishlistToSave
+      };
+    } else {
+      const newWishlistNumber = wishlistsIds.length + 1;
+      parsedDataStoreFile.wishlists[`${newWishlistNumber}`] = {
+        id: newWishlistNumber,
+        wishlist: wishlistToSave
+      };
+    }
     dataStoreJSON = JSON.stringify(parsedDataStoreFile);
     fs.writeFileSync('./wishlistDataStore.json', dataStoreJSON);
   }
