@@ -1,7 +1,7 @@
 const { describe, it } = global;
 const assert = require('chai').assert;
 
-const uploadWishlist = require('../uploadWishlist');
+const uploadWishlist = require('../../uploadWishlist');
 
 describe('Upload Wishlist', () => {
   const emptyWishlist = undefined;

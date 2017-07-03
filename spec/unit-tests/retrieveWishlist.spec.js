@@ -1,7 +1,7 @@
 const { describe, it } = global;
 const assert = require('chai').assert;
 
-const retrieveWishlistFor = require('../retrieveWishlistFor');
+const retrieveWishlistFor = require('../../retrieveWishlistFor');
 
 describe('Retrieve wishlist', () => {
   const wishlists = {

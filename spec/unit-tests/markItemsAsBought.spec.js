@@ -1,7 +1,7 @@
 const { describe, it, beforeEach } = global;
 const assert = require('chai').assert;
 
-const markItemsAsBoughtFor = require('../markItemsAsBoughtFor');
+const markItemsAsBoughtFor = require('../../markItemsAsBoughtFor');
 
 describe('Mark items as bought for', () => {
   let wishlists;
