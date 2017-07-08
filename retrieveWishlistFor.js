@@ -1,15 +1,22 @@
-module.exports = (name) => ({ wishlists }) => {
-  let matchedWishlist;
+const wishlistsFromDataSource = require('./returnWishlistsFromDataSource');
 
-  wishlists.forEach((wishlist) => {
-    if (wishlist.name === name) {
-      matchedWishlist = wishlist.wishlistItems;
+const getWishlist = (wishlists, nameToCheck) => {
+  const wishlistsIds = Object.keys(wishlistsFromDataSource('./wishlistDataStore.json').wishlists);
+  let existingWishlist;
+  wishlistsIds.forEach((wishlistId) => {
+    if (wishlists[`${wishlistId}`].wishlist.name === nameToCheck) {
+      existingWishlist = wishlists[`${wishlistId}`].wishlist.wishlistItems;
     }
   });
+  return existingWishlist;
+};
 
-  if (matchedWishlist === undefined) {
+module.exports = (name) => (wishlists) => {
+  const retrievedWishlist = getWishlist(wishlists, name);
+
+  if (!retrievedWishlist) {
     return `No wishlist for ${name} found`;
   }
 
-  return JSON.stringify(matchedWishlist);
+  return JSON.stringify(retrievedWishlist);
 };

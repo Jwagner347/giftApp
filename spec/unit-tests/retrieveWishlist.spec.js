@@ -5,11 +5,18 @@ const retrieveWishlistFor = require('../../retrieveWishlistFor');
 
 describe('Retrieve wishlist', () => {
   const wishlists = {
-    wishlists: [
-      { name: 'John Smith', wishlistItems: ['Kyocera', 'Yacht', 'Condo'] },
-      { name: 'Jenny Ford', wishlistItems: ['Honda', 'Ball Pit'] },
-      { name: 'Fred Durst', wishlistItems: ['Samsung', 'fishing boat', 'Thigh-master'] }
-    ]
+    1: {
+      id: '1',
+      wishlist: { wishlistItems: ['Kyocera', 'Yacht', 'Condo'], name: 'John Smith' }
+    },
+    2: {
+      id: '2',
+      wishlist: { wishlistItems: ['Honda', 'Ball Pit'], name: 'Jenny Ford' }
+    },
+    3: {
+      id: '3',
+      wishlist: { wishlistItems: ['Samsung', 'fishing boat', 'Thigh-master'], name: 'Fred Durst' }
+    }
   };
 
   it('by name should return wishlist with that name', () => {
