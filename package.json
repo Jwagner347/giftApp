@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "jasmine",
-    "develop": "nodemon --watch . --exec 'npm test && npm start'"
+    "test": "jasmine-node spec",
+    "unit-test": "jasmine-node spec/unit-tests",
+    "api-test": "jasmine-node spec/api-tests",
+    "develop": "nodemon --config nodemon.json --watch . --exec 'npm run unit-test && npm start'"
   },
   "author": "",
   "license": "ISC",
