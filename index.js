@@ -6,6 +6,10 @@ const wishlistController = require('./controllers/wishlist');
 const app = express();
 app.use(bodyParser.json());
 
+app.get('/wishlist', (req, res) => {
+  wishlistController.get(req, res);
+});
+
 app.post('/wishlist/upload', (req, res) => {
   wishlistController.upload(req, res);
 });
