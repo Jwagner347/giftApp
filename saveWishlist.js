@@ -1,4 +1,3 @@
-const fs = require('fs');
 const MongoClient = require('mongodb').MongoClient;
 
 const url = 'mongodb://localhost:27017/myproject';
@@ -25,8 +24,8 @@ module.exports = (wishlistItems, name) => {
       newWishlist({ document: wishlistToSave,
         db,
         nameOfCollection: 'wishlists',
-        callback: (result) => {
-          console.log(result);
+        callback: () => {
+          console.log(`Successfully created new wishlist for ${name}!`);
         }
       });
       db.close();

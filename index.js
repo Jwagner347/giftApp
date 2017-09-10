@@ -10,7 +10,7 @@ app.get('/wishlist', (req, res) => {
   wishlistController.get(req, res);
 });
 
-app.post('/wishlist/upload', (req, res) => {
+app.post('/wishlist/new', (req, res) => {
   wishlistController.upload(req, res);
 });
 
