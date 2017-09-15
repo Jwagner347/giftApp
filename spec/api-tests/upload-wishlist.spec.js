@@ -1,7 +1,7 @@
 const frisby = require('frisby');
 
 frisby.create('Upload wishlist')
-  .post('http://localhost:3000/wishlist/upload', {
+  .post('http://localhost:3000/wishlist/new', {
     wishlistItems: ['Townhouse'],
     name: 'Mahfam'
   }, { json: true })
