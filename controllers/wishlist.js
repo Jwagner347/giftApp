@@ -1,6 +1,6 @@
 const uploadWishlist = require('../uploadWishlist');
 const retrieveWishlistFor = require('../retrieveWishlistFor');
-const wishlistsFromDataSource = require('../returnWishlistsFromDataSource');
+const updateWishlistFor = require('../updateWishlistFor');
 
 module.exports = {
   upload: (req, res) => {
@@ -8,8 +8,22 @@ module.exports = {
     res.json(uploadedWishlist);
   },
   get: (req, res) => {
-    const wishlists = wishlistsFromDataSource('./wishlistDataStore.json');
-    const retrievedWishlist = retrieveWishlistFor(req.query.name, wishlists);
-    res.json(retrievedWishlist);
+    retrieveWishlistFor(req.params.userId)
+      .then((retrievedWishlist) => {
+        res.json({ wishlist: retrievedWishlist });
+      });
+  },
+  put: (req, res) => {
+    const name = req.params.userId;
+    const wishlist = req.body.wishlistItems;
+
+    updateWishlistFor(name, wishlist)
+      .then((successfulUpdate) => {
+        if (successfulUpdate.ok === 1) {
+          res.json({ url: `/wishlist/${name}` });
+        } else {
+          res.status(500).end();
+        }
+      });
   }
 };

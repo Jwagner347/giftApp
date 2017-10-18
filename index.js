@@ -6,8 +6,12 @@ const wishlistController = require('./controllers/wishlist');
 const app = express();
 app.use(bodyParser.json());
 
-app.get('/wishlist', (req, res) => {
+app.get('/wishlist/:userId', (req, res) => {
   wishlistController.get(req, res);
+});
+
+app.put('/wishlist/:userId', (req, res) => {
+  wishlistController.put(req, res);
 });
 
 app.post('/wishlist/new', (req, res) => {

@@ -31,36 +31,4 @@ module.exports = (wishlistItems, name) => {
       db.close();
     }
   });
-
-
-    // collection.findOneAndUpdate({ name }, { $set: wishlistToSave }, {
-    //   returnOriginal: false
-    // }, (error, result) => {
-    //   console.log('result: ', result);
-    // });
-
-  // const wishlistAlreadyExists = (wishlists, nameToCheck) => {
-  //   let existingWishlistId;
-  //   wishlistsIds.forEach((wishlistId) => {
-  //     if (wishlists[`${wishlistId}`].wishlist.name === nameToCheck) {
-  //       existingWishlistId = wishlistId;
-  //     }
-  //   });
-  //   return existingWishlistId;
-  // };
-  // const existingWishlist = wishlistAlreadyExists(parsedDataStoreFile.wishlists, name);
-  // if (existingWishlist) {
-  //   parsedDataStoreFile.wishlists[`${existingWishlist}`] = {
-  //     id: existingWishlist,
-  //     wishlist: wishlistToSave
-  //   };
-  // } else {
-  //   const newWishlistNumber = wishlistsIds.length + 1;
-  //   parsedDataStoreFile.wishlists[`${newWishlistNumber}`] = {
-  //     id: newWishlistNumber,
-  //     wishlist: wishlistToSave
-  //   };
-  // }
-  // dataStoreJSON = JSON.stringify(parsedDataStoreFile);
-  // fs.writeFileSync('./wishlistDataStore.json', dataStoreJSON);
 };
