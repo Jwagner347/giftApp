@@ -14,6 +14,10 @@ app.put('/wishlist/:userId', (req, res) => {
   wishlistController.put(req, res);
 });
 
+app.delete('/wishlist/:userId', (req, res) => {
+  wishlistController.del(req, res);
+});
+
 app.post('/wishlist/new', (req, res) => {
   wishlistController.upload(req, res);
 });

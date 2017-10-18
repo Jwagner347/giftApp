@@ -1,6 +1,7 @@
 const uploadWishlist = require('../uploadWishlist');
 const retrieveWishlistFor = require('../retrieveWishlistFor');
 const updateWishlistFor = require('../updateWishlistFor');
+const deleteWishlist = require('../deleteWishlist');
 
 module.exports = {
   upload: (req, res) => {
@@ -21,6 +22,17 @@ module.exports = {
       .then((successfulUpdate) => {
         if (successfulUpdate.ok === 1) {
           res.json({ url: `/wishlist/${name}` });
+        } else {
+          res.status(500).end();
+        }
+      });
+  },
+  del: (req, res) => {
+    const name = req.params.userId;
+    deleteWishlist(name)
+      .then((deletedWishlist) => {
+        if (deletedWishlist.ok === 1) {
+          res.status(200).end();
         } else {
           res.status(500).end();
         }
