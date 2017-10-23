@@ -7,7 +7,7 @@
     "start": "node index.js",
     "test": "jasmine-node spec",
     "unit-test": "jasmine-node spec/unit-tests",
-    "api-test": "jasmine-node spec/api-tests",
+    "api-test": "jest spec/api-tests",
     "develop": "nodemon --config nodemon.json --watch . --exec 'npm run unit-test && npm start'"
   },
   "author": "",
