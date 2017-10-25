@@ -7,8 +7,7 @@ describe('Wishlists', () => {
       .expect('status', 200)
       .expect('header', 'content-type', /application\/json/)
       .expect('json', {
-        wishlistItems: ['Townhouse'],
-        name: 'Mahfam'
+        url: '/wishlist/Mahfam'
       })
       .then(() => {
         return frisby
