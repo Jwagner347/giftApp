@@ -9,7 +9,7 @@ module.exports = (wishlistItems, name) => {
     return 'Wishlist must have a name associated with it';
   }
 
-  saveWishlist(wishlistItems, name);
+  const wishlistSavedSuccessfully = saveWishlist(wishlistItems, name);
 
-  return { wishlistItems, name };
+  return wishlistSavedSuccessfully;
 };

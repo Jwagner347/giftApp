@@ -5,8 +5,15 @@ const deleteWishlist = require('../deleteWishlist');
 
 module.exports = {
   upload: (req, res) => {
-    const uploadedWishlist = uploadWishlist(req.body.wishlistItems, req.body.name);
-    res.json(uploadedWishlist);
+    const name = req.body.name;
+    uploadWishlist(req.body.wishlistItems, name)
+      .then((wishlistSavedSuccessfully) => {
+        if (wishlistSavedSuccessfully.ok === 1) {
+          res.json({ url: `/wishlist/${name}` });
+        } else {
+          res.status(500).end();
+        }
+      });
   },
   get: (req, res) => {
     retrieveWishlistFor(req.params.userId)
