@@ -4,7 +4,7 @@ describe('Wishlists', () => {
   it('should fulfill all crud operations', (done) => {
     frisby
       .post('http://localhost:3000/wishlist/new', { wishlistItems: ['Townhouse'], name: 'Mahfam' }, { json: true })
-      .expect('status', 200)
+      .expect('status', 201)
       .expect('header', 'content-type', /application\/json/)
       .expect('json', {
         url: '/wishlist/Mahfam'

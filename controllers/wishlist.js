@@ -9,7 +9,7 @@ module.exports = {
     uploadWishlist(req.body.wishlistItems, name)
       .then((wishlistSavedSuccessfully) => {
         if (wishlistSavedSuccessfully.result.ok === 1) {
-          res.json({ url: `/wishlist/${name}` });
+          res.status(201).json({ url: `/wishlist/${name}` });
         } else {
           res.status(500).end();
         }
