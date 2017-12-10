@@ -7,8 +7,8 @@ module.exports = {
   upload: (req, res) => {
     const name = req.body.name;
     uploadWishlist(req.body.wishlistItems, name)
-      .then((wishlistSavedSuccessfully) => {
-        if (wishlistSavedSuccessfully.result.ok === 1) {
+      .then((result) => {
+        if (result.ok === 1) {
           res.status(201).json({ url: `/wishlist/${name}` });
         } else {
           res.status(500).end();

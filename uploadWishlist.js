@@ -1,15 +1,14 @@
 const saveWishlist = require('./saveWishlist');
 
 module.exports = (wishlistItems, name) => {
-  if (!wishlistItems) {
-    return 'Please include at least one item for your wishlist';
+
+  if (!Array.isArray(wishlistItems) || !wishlistItems.length) {
+    throw new Error('Wishlist items must be an array with at least one item');
   }
 
-  if (!name) {
-    return 'Wishlist must have a name associated with it';
+  if (typeof name !== 'string' || !name) {
+    throw new Error('Name must be a string of at least one character in length');
   }
 
-  const wishlistSavedSuccessfully = saveWishlist(wishlistItems, name);
-
-  return wishlistSavedSuccessfully;
+  return saveWishlist(wishlistItems, name);
 };

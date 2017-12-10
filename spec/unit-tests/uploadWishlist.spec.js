@@ -1,34 +1,66 @@
 const { describe, it } = global;
-const assert = require('chai').assert;
 
 const uploadWishlist = require('../../uploadWishlist');
 
 describe('Upload Wishlist', () => {
-  const emptyWishlist = undefined;
+  const undefinedWishlist = undefined;
   const singleItemWishlist = ['Pixel'];
   const multipleWishlistItems = ['Kyocera', 'Yacht', 'Condo'];
+  const validName = 'Jim Bob';
+  const validWishlistItems = ['Things', 'I', 'Love'];
   const loggedInUser = 'Phil Harmonics';
-  const expectedSingleItemWishlist = { wishlistItems: singleItemWishlist, name: loggedInUser };
-  const expectedMultipleItemWishlist = { wishlistItems: multipleWishlistItems, name: loggedInUser };
-  const expectedMultipleItemNamedWishlist = { wishlistItems: multipleWishlistItems, name: 'Jane Fonda' };
+  const wishlistItemsObject = { foo: 'bar' };
+  const wishlistItemsString = 'Milk, Honey';
+  const invalidName = { fiz: 'baz' };
+  const emptyStringName = '';
+  const emptyWishlistItems = [];
 
-  it('should return one wishlist item', () => {
-    assert.deepEqual(uploadWishlist(singleItemWishlist, loggedInUser), expectedSingleItemWishlist);
+
+  it('should throw an error if wishlist items is an object and not an array', () => {
+    expect(() => { uploadWishlist(wishlistItemsObject, validName); }).toThrow('Wishlist items must be an array with at least one item');
   });
 
-  it('should return multiple wishlist items', () => {
-    assert.deepEqual(uploadWishlist(multipleWishlistItems, loggedInUser), expectedMultipleItemWishlist);
+  it('should throw an error if wishlist items is a string', () => {
+    expect(() => { uploadWishlist(wishlistItemsString, validName); }).toThrow('Wishlist items must be an array with at least one item');
   });
 
-  it('should not accept empty wish list', () => {
-    assert.equal(uploadWishlist(emptyWishlist), 'Please include at least one item for your wishlist');
+  it('should throw an error if name is not a string', () => {
+    expect(() => { uploadWishlist(validWishlistItems, invalidName); }).toThrow('Name must be a string of at least one character in length');
   });
 
-  it('should return wishlist with the name of the wishlist owner', () => {
-    assert.deepEqual(uploadWishlist(multipleWishlistItems, 'Jane Fonda'), expectedMultipleItemNamedWishlist);
+  it('should throw an error if name is empty string', () => {
+    expect(() => {
+      uploadWishlist(validWishlistItems, emptyStringName);
+    }).toThrow('Name must be a string of at least one character in length');
   });
 
-  it('should return an error when no name is provided', () => {
-    assert.equal(uploadWishlist(multipleWishlistItems), 'Wishlist must have a name associated with it');
+  it('should throw an error when no name is provided', () => {
+    expect(() => {
+      uploadWishlist(validWishlistItems);
+    }).toThrow('Name must be a string of at least one character in length');
+  });
+
+  it('should throw an error if wishlistItems is empty array', () => {
+    expect(() => { uploadWishlist(emptyWishlistItems, validName); }).toThrow('Wishlist items must be an array with at least one item');
+  });
+
+  it('should throw an error if wishlistItems is undefined', () => {
+    expect(() => { uploadWishlist(undefinedWishlist, validName); }).toThrow('Wishlist items must be an array with at least one item');
+  });
+
+  it('should return one wishlist item', (done) => {
+    uploadWishlist(singleItemWishlist, loggedInUser)
+      .then((result) => {
+        expect(result.ok).toEqual(1);
+        done();
+      });
+  });
+
+  it('should return multiple wishlist items', (done) => {
+    uploadWishlist(multipleWishlistItems, loggedInUser)
+      .then((result) => {
+        expect(result.ok).toEqual(1);
+        done();
+      });
   });
 });

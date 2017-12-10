@@ -1,5 +1,4 @@
 const { describe, it, beforeEach } = global;
-const assert = require('chai').assert;
 
 const markItemsAsBoughtFor = require('../../markItemsAsBoughtFor');
 
@@ -14,7 +13,7 @@ describe('Mark items as bought for', () => {
   });
 
   it('should create new field of bought items in wishlist object', () => {
-    assert.equal(markItemsAsBoughtFor('John Smith')({ boughtItems: ['Condo'], wishlists }), JSON.stringify({
+    expect(markItemsAsBoughtFor('John Smith')({ boughtItems: ['Condo'], wishlists })).toBe(JSON.stringify({
       name: 'John Smith',
       wishlistItems: ['Kyocera', 'Yacht', 'Condo'],
       boughtItems: ['Condo']
@@ -22,11 +21,11 @@ describe('Mark items as bought for', () => {
   });
 
   it('should complain if the name is not in the wishlist object you are searching through', () => {
-    assert.equal(markItemsAsBoughtFor('Jim Nonexistent')({ boughtItems: ['Condo'], wishlists }), 'No wishlists exist for Jim Nonexistent');
+    expect(markItemsAsBoughtFor('Jim Nonexistent')({ boughtItems: ['Condo'], wishlists })).toBe('No wishlists exist for Jim Nonexistent');
   });
 
   it('should mark multiple items as bought', () => {
-    assert.equal(markItemsAsBoughtFor('Fred Durst')({ boughtItems: ['fishing boat', 'Thigh-master'], wishlists }), JSON.stringify({
+    expect(markItemsAsBoughtFor('Fred Durst')({ boughtItems: ['fishing boat', 'Thigh-master'], wishlists })).toBe(JSON.stringify({
       name: 'Fred Durst',
       wishlistItems: ['Samsung', 'fishing boat', 'Thigh-master'],
       boughtItems: ['fishing boat', 'Thigh-master']
@@ -37,7 +36,7 @@ describe('Mark items as bought for', () => {
     const wishlistWithMarkedItems = [
       { name: 'Jenny Ford', wishlistItems: ['Honda', 'Ball Pit'], boughtItems: ['Ball Pit'] }
     ];
-    assert.equal(markItemsAsBoughtFor('Jenny Ford')({ boughtItems: ['Ball Pit'], wishlists: wishlistWithMarkedItems }), JSON.stringify({
+    expect(markItemsAsBoughtFor('Jenny Ford')({ boughtItems: ['Ball Pit'], wishlists: wishlistWithMarkedItems })).toBe(JSON.stringify({
       name: 'Jenny Ford',
       wishlistItems: ['Honda', 'Ball Pit'],
       boughtItems: ['Ball Pit']
@@ -50,7 +49,7 @@ describe('Mark items as bought for', () => {
     const wishlistWithMultipleMarkedItems = [
       { name, wishlistItems, boughtItems: ['Bread', 'Potatoes'] }
     ];
-    assert.equal(markItemsAsBoughtFor(name)({ boughtItems: ['Flax', 'Collard Greens'], wishlists: wishlistWithMultipleMarkedItems }),
+    expect(markItemsAsBoughtFor(name)({ boughtItems: ['Flax', 'Collard Greens'], wishlists: wishlistWithMultipleMarkedItems })).toBe(
       JSON.stringify({
         name,
         wishlistItems,
