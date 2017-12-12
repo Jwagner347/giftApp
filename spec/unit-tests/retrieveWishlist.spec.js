@@ -1,15 +1,21 @@
 const { describe, it } = global;
-const assert = require('chai').assert;
 
 const retrieveWishlistFor = require('../../retrieveWishlistFor');
 
-// commented out until i get test data set up
-xdescribe('Retrieve wishlist', () => {
-  it('by name should return wishlist with that name', () => {
-    assert.deepEqual(retrieveWishlistFor('John Smith'), (['Kyocera', 'Yacht', 'Condo']));
+describe('Retrieve wishlist', () => {
+  it('by name should return wishlist with that name', (done) => {
+    retrieveWishlistFor('John Smith')
+      .then((wishlistItems) => {
+        expect(wishlistItems).toEqual(['Kyocera', 'Yacht', 'Condo']);
+        done();
+      });
   });
 
-  it('by name should return an error if no name matched', () => {
-    assert.deepEqual(retrieveWishlistFor('John Doe'), 'No wishlist for John Doe found');
+  it('by name should return an empty array if no name matched', (done) => {
+    retrieveWishlistFor('John Doe')
+      .then((wishlistItems) => {
+        expect(wishlistItems.length).toBe(0);
+        done();
+      });
   });
 });

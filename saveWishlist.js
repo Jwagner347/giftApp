@@ -1,7 +1,8 @@
 const MongoClient = require('mongodb').MongoClient;
 
-module.exports = (wishlistItems, name, url = 'mongodb://localhost:27017/myproject') => {
+const dbUrl = process.env.DB_URL;
 
+module.exports = (wishlistItems, name, url = dbUrl) => {
   return MongoClient.connect(url)
     .then((db) => {
       const collection = db.collection('wishlists');

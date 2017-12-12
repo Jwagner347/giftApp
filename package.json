@@ -1,13 +1,13 @@
 {
   "name": "gift-app",
   "version": "0.0.1",
-  "description": "A place to store your Christmas, Birthday, Wedding, or other event wishlists, so that your friends and family can get you what you want.",
+  "description": "A place to post your Christmas, Birthday, Wedding, or other event wishlists, so that your friends and family can get you what you want.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "test": "jasmine-node spec",
-    "unit-test": "jasmine-node spec/unit-tests",
-    "api-test": "jest spec/api-tests",
+    "unit-test": "mongo test --eval 'db.wishlists.deleteMany({}); db.wishlists.insertOne({ \"wishlistItems\" : [ \"Kyocera\", \"Yacht\", \"Condo\" ], \"name\" : \"John Smith\" })' && DB_URL='mongodb://localhost:27017/test' jasmine-node spec/unit-tests",
+    "api-test": "mongo test --eval 'db.wishlists.deleteMany({})' && jest spec/api-tests",
     "develop": "nodemon --config nodemon.json --watch . --exec 'npm run unit-test && npm start'"
   },
   "author": "",
@@ -18,7 +18,6 @@
     "mongodb": "^2.2.31"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
     "eslint": "^3.16.1",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
