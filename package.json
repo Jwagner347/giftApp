@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "start-dev": "DB_URL='mongodb://localhost:27017/development' nodemon index.js",
+    "start-unit-test": "DB_URL='mongodb://localhost:27017/test' nodemon index.js",
     "test": "jasmine-node spec",
     "unit-test": "mongo test --eval 'db.wishlists.deleteMany({}); db.wishlists.insertOne({ \"wishlistItems\" : [ \"Kyocera\", \"Yacht\", \"Condo\" ], \"name\" : \"John Smith\" })' && DB_URL='mongodb://localhost:27017/test' jasmine-node spec/unit-tests",
     "api-test": "mongo test --eval 'db.wishlists.deleteMany({})' && jest spec/api-tests",
