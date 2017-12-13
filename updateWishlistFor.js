@@ -1,12 +1,12 @@
 const MongoClient = require('mongodb').MongoClient;
 
-const url = 'mongodb://localhost:27017/test';
+const dbUrl = process.env.DB_URL;
 
 
 module.exports = (name, wishlistItems) => {
   return new Promise((resolve, reject) => {
     try {
-      MongoClient.connect(url, (err, db) => {
+      MongoClient.connect(dbUrl, (err, db) => {
         const collection = db.collection('wishlists');
         collection.findOneAndUpdate({ name }, { $set: { wishlistItems } }, { upsert: true, returnOriginal: false })
           .then((successfulUpdate) => {
