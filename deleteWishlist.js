@@ -7,9 +7,9 @@ module.exports = (name) => {
     .then((db) => {
       const collection = db.collection('wishlists');
       return collection.findOneAndDelete({ name })
-        .then((successfulDelete) => {
+        .then((result) => {
           db.close();
-          return successfulDelete;
+          return result;
         });
     })
     .catch((error) => {

@@ -37,9 +37,11 @@ module.exports = {
   del: (req, res) => {
     const name = req.params.userId;
     deleteWishlist(name)
-      .then((deletedWishlist) => {
-        if (deletedWishlist.ok === 1) {
+      .then((result) => {
+        if (result.value && result.ok === 1) {
           res.status(200).end();
+        } else if (!result.value && result.ok === 1) {
+          res.status(404).end();
         } else {
           res.status(500).end();
         }
