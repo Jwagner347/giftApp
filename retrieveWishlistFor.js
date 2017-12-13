@@ -2,7 +2,6 @@ const MongoClient = require('mongodb').MongoClient;
 
 const dbUrl = process.env.DB_URL;
 
-
 module.exports = (name) => {
   return MongoClient.connect(dbUrl)
     .then((db) => {
@@ -11,9 +10,7 @@ module.exports = (name) => {
         .then((doc) => {
           let wishlistItems;
           db.close();
-          if (!doc) {
-            wishlistItems = [];
-          } else {
+          if (doc) {
             wishlistItems = doc.wishlistItems;
           }
           return wishlistItems;

@@ -14,10 +14,10 @@ module.exports = (name, wishlistItems) => {
   return MongoClient.connect(dbUrl)
     .then((db) => {
       const collection = db.collection('wishlists');
-      return collection.findOneAndUpdate({ name }, { $set: { wishlistItems } }, { upsert: true, returnOriginal: false })
-        .then((successfulUpdate) => {
+      return collection.findOneAndUpdate({ name }, { $set: { wishlistItems } }, { returnOriginal: false })
+        .then((result) => {
           db.close();
-          return successfulUpdate;
+          return result;
         });
     })
     .catch((error) => {

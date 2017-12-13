@@ -18,7 +18,11 @@ module.exports = {
   get: (req, res) => {
     retrieveWishlistFor(req.params.userId)
       .then((retrievedWishlist) => {
-        res.json({ wishlist: retrievedWishlist });
+        if (retrievedWishlist) {
+          res.json({ wishlist: retrievedWishlist });
+        } else {
+          res.status(404).end();
+        }
       });
   },
   put: (req, res) => {
@@ -26,9 +30,11 @@ module.exports = {
     const wishlist = req.body.wishlistItems;
 
     updateWishlistFor(name, wishlist)
-      .then((successfulUpdate) => {
-        if (successfulUpdate.ok === 1) {
+      .then((result) => {
+        if (result.value && result.ok === 1) {
           res.json({ url: `/wishlist/${name}` });
+        } else if (!result.value && result.ok === 1) {
+          res.status(404).end();
         } else {
           res.status(500).end();
         }

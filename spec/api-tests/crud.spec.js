@@ -53,11 +53,7 @@ describe('Wishlists', () => {
       .then(() => {
         return frisby
           .get('http://localhost:3000/wishlist/Mahfam')
-          .expect('status', 200)
-          .expect('header', 'content-type', /application\/json/)
-          .expect('jsonStrict', {
-            wishlist: []
-          });
+          .expect('status', 404)
       })
       .done(done);
   });
