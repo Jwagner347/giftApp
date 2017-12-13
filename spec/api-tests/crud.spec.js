@@ -53,7 +53,7 @@ describe('Wishlists', () => {
       .then(() => {
         return frisby
           .get('http://localhost:3000/wishlist/Mahfam')
-          .expect('status', 404)
+          .expect('status', 404);
       })
       .done(done);
   });

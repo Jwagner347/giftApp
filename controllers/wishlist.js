@@ -10,6 +10,8 @@ module.exports = {
       .then((result) => {
         if (result.ok === 1) {
           res.status(201).json({ url: `/wishlist/${name}` });
+        } else if (result.resourceAlreadyExists) {
+          res.status(409).end();
         } else {
           res.status(500).end();
         }
