@@ -2,11 +2,12 @@ const MongoClient = require('mongodb').MongoClient;
 
 const dbUrl = process.env.DB_URL;
 
-module.exports = (wishlistItems, name, url = dbUrl) => {
+module.exports = (userName, url = dbUrl) => {
+
   return MongoClient.connect(url)
     .then((db) => {
-      const collection = db.collection('wishlists');
-      return collection.findOne({ name })
+      const collection = db.collection('users');
+      return collection.findOne({ userName })
         .then((doc) => {
           if (doc) {
             return false;
@@ -18,8 +19,8 @@ module.exports = (wishlistItems, name, url = dbUrl) => {
       if (!db) {
         return { resourceAlreadyExists: true };
       }
-      const collection = db.collection('wishlists');
-      return collection.insertOne({ wishlistItems, name })
+      const collection = db.collection('users');
+      return collection.insertOne({ userName })
         .then(({ result }) => {
           db.close();
           return result;

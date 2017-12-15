@@ -9,7 +9,7 @@
     "start-server-api-test": "DB_URL='mongodb://localhost:27017/apitest' nodemon index.js",
     "test": "jasmine-node spec",
     "unit-test": "mongo test --eval 'db.wishlists.deleteMany({}); db.wishlists.insertOne({ \"wishlistItems\" : [ \"Kyocera\", \"Yacht\", \"Condo\" ], \"name\" : \"John Smith\" })' && DB_URL='mongodb://localhost:27017/test' jasmine-node spec/unit-tests",
-    "api-test": "mongo apitest --eval 'db.wishlists.deleteMany({})' && jest spec/api-tests",
+    "api-test": "mongo apitest --eval 'db.wishlists.deleteMany({}); db.users.deleteMany({})' && jest spec/api-tests",
     "develop": "nodemon --config nodemon.json --watch . --exec 'npm run unit-test && npm start'"
   },
   "author": "",
