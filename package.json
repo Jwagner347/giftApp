@@ -1,5 +1,5 @@
 {
-  "name": "gift-app",
+  "name": "giftApp",
   "version": "0.0.1",
   "description": "A place to post your Christmas, Birthday, Wedding, or other event wishlists, so that your friends and family can get you what you want.",
   "main": "index.js",
