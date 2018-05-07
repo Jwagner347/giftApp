@@ -2,8 +2,8 @@ const MongoClient = require('mongodb').MongoClient;
 
 const dbUrl = process.env.DB_URL;
 
-module.exports = (wishlistItems, name, url = dbUrl) => {
-  return MongoClient.connect(url)
+module.exports = (wishlistItems, name) => {
+  return MongoClient.connect(dbUrl)
     .then((db) => {
       const collection = db.collection('wishlists');
       return collection.findOne({ name })
@@ -23,9 +23,12 @@ module.exports = (wishlistItems, name, url = dbUrl) => {
         .then(({ result }) => {
           db.close();
           return result;
+        })
+        .catch((error) => {
+          console.error(err);
         });
     })
-    .catch((error) => {
-      throw new Error(error);
+    .catch((err) => {
+      console.error(err);
     });
 };

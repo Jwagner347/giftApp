@@ -8,7 +8,8 @@ describe('Upload Wishlist', () => {
   const multipleWishlistItems = ['Kyocera', 'Yacht', 'Condo'];
   const validName = 'Jim Bob';
   const validWishlistItems = ['Things', 'I', 'Love'];
-  const loggedInUser = 'Phil Harmonics';
+  const singleItemUser = 'Phil Harmonics';
+  const multipleItemUser = 'Big D';
   const wishlistItemsObject = { foo: 'bar' };
   const wishlistItemsString = 'Milk, Honey';
   const invalidName = { fiz: 'baz' };
@@ -49,7 +50,7 @@ describe('Upload Wishlist', () => {
   });
 
   it('should return one wishlist item', (done) => {
-    uploadWishlist(singleItemWishlist, loggedInUser)
+    uploadWishlist(singleItemWishlist, singleItemUser)
       .then((result) => {
         expect(result.ok).toEqual(1);
         done();
@@ -57,7 +58,7 @@ describe('Upload Wishlist', () => {
   });
 
   it('should return multiple wishlist items', (done) => {
-    uploadWishlist(multipleWishlistItems, loggedInUser)
+    uploadWishlist(multipleWishlistItems, multipleItemUser)
       .then((result) => {
         expect(result.ok).toEqual(1);
         done();

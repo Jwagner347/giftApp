@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  api:
+    depends_on:
+      - 'mongodb'
+    build: .
+    image: jwagner347/gift-app-api
+    volumes:
+      - .:/usr/src/app
+    environment:
+       - DB_URL=mongodb://mongodb:27017/development
+    ports:
+      - '3000:3000'
+
+  mongodb:
+    image: mongo:3
+    ports:
+      - '27017:27017'
+    container_name: mongodb
+    volumes:
+      - mongo-volume:/data/db
+
+volumes:
+  mongo-volume:
