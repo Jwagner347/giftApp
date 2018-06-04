@@ -19,5 +19,8 @@ jobs:
           command: ./run_tests.sh unit
 
       - run:
+          command: npm install
+
+      - run:
           name: API Tests
           command: ./run_tests.sh api
