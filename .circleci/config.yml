@@ -1,13 +1,11 @@
 version: 2
 jobs:
   build:
-    docker:
-      - image: circleci/node:9.6.1
+    machine: true
+      - image: circleci/classic:latest
     working_directory: ~/moonrise.works
     steps:
       - checkout
-      - setup_remote_docker:
-          version: 17.11.0-ce
       - run:
           name: Install Docker Compose
           command: |
@@ -17,9 +15,6 @@ jobs:
       - run:
           name: Unit Tests
           command: ./run_tests.sh unit
-
-      - run:
-          command: npm install
 
       - run:
           name: API Tests
