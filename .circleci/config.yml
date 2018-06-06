@@ -12,7 +12,7 @@ jobs:
             chmod +x ~/docker-compose
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
       - run:
-          command: npm install --only=dev
+          command: npm install
 
       - run:
           name: Unit Tests
