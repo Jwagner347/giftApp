@@ -2,7 +2,6 @@ version: 2
 jobs:
   build:
     machine: true
-      - image: circleci/classic:latest
     working_directory: ~/moonrise.works
     steps:
       - checkout
